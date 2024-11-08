@@ -19,6 +19,14 @@ export class BkTbquestions1718321413380 implements MigrationInterface {
             generationStrategy: 'uuid',
           },
           {
+            name: 'user',
+            type: 'varchar',
+          },
+          {
+            name: 'difficulty',
+            type: 'varchar',
+          },
+          {
             name: 'question',
             type: 'varchar',
           },
@@ -27,12 +35,36 @@ export class BkTbquestions1718321413380 implements MigrationInterface {
             type: 'double',
           },
           {
-            name: 'paymentType',
-            type: 'varchar',
+            name: 'answer',
+            type: 'double',
           },
           {
-            name: 'user',
-            type: 'varchar',
+            name: 'current_score',
+            type: 'double',
+          },
+          {
+            name: 'answering_time',
+            type: 'double',
+          },
+          {
+            name: 'is_corret',
+            type: 'tinyint',
+            length: '1',
+          },
+          {
+            name: 'has_multiplication',
+            type: 'tinyint',
+            length: '1',
+          },
+          {
+            name: 'has_division',
+            type: 'tinyint',
+            length: '1',
+          },
+          {
+            name: 'steps',
+            type: 'int',
+            default: '1',
           },
           {
             name: 'created_at',
