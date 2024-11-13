@@ -14,8 +14,8 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 import { Auth } from '@/common/decorators/auth.decorator';
 
-import { questionsService } from '../services/questions.service';
-import { CreateAccountDTO } from '../dto/create.dto';
+import { QuestionsService } from '../services/questions.service';
+import { CreateQuestionDTO } from '../dto/create.dto';
 
 @Auth()
 @ApiTags('questions')
@@ -24,8 +24,8 @@ import { CreateAccountDTO } from '../dto/create.dto';
   version: '1',
   path: '/questions',
 })
-export class questionsController {
-  constructor(private readonly _service: questionsService) {}
+export class QuestionsController {
+  constructor(private readonly _service: QuestionsService) {}
 
   @Get()
   async index(@Req() req: AuthenticatedRequest) {
@@ -42,7 +42,7 @@ export class questionsController {
   @Post()
   async create(
     @Req() req: AuthenticatedRequest,
-    @Body() data: CreateAccountDTO,
+    @Body() data: CreateQuestionDTO,
   ) {
     return this._service.store({ ...data, owner: req.user.id });
   }
@@ -51,7 +51,7 @@ export class questionsController {
   async update(
     @Req() req: AuthenticatedRequest,
     @Param('id') id: string,
-    @Body() data: Partial<CreateAccountDTO>,
+    @Body() data: Partial<CreateQuestionDTO>,
   ) {
     return this._service.update(id, { ...data, owner: req.user.id });
   }
